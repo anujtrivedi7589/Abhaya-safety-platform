@@ -3,7 +3,7 @@ import sqlite3
 import time
 import uuid
 from typing import Optional, List
-from fastapi import FastAPI, HTTPException, Request, Query
+from fastapi import FastAPI, HTTPException, Request, Query, File, UploadFile, Form
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -366,6 +366,40 @@ async def get_command_center_dashboard():
         "erss_112_bridge_status": "ONLINE / CONNECTED",
         "recent_emergency_events": events
     }
+# --- Government ID Verification Endpoints ---
+
+# Temporary memory store for user verification status (For production, this would be in SQLite)
+user_session = {
+    "is_verified": False,
+    "user_name": "Civilian Helper",
+    "id_doc_name": None
+}
+
+@app.post("/api/verify-id")
+async def verify_id(user_name: str = Form(...), file: UploadFile = File(None)):
+    """Upload government ID to verify citizen status."""
+    if file:
+        user_session["is_verified"] = True
+        user_session["user_name"] = user_name
+        user_session["id_doc_name"] = file.filename
+        return {
+            "status": "VERIFIED",
+            "is_verified": True,
+            "display_name": f"Verified Helper: {user_name}"
+        }
+    
+    # If no file is uploaded, set status to unauthorized
+    user_session["is_verified"] = False
+    return {
+        "status": "UNAUTHORIZED",
+        "is_verified": False,
+        "display_name": f"{user_name} [UNAUTHORIZED]"
+    }
+
+@app.get("/api/user-status")
+async def get_user_status():
+    """Retrieve the current authorization status of the user."""
+    return user_session
 
 if __name__ == "__main__":
     import uvicorn
