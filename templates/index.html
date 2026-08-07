@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abhaya: Scaling National Safety & Emergency Services</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="brand">
+      <div class="brand-logo">🛡️</div>
+      <div>
+        <div class="brand-title">ABHAYA</div>
+        <div class="brand-subtitle">National Safety & Emergency Response Platform</div>
+      </div>
+    </div>
+
+    <nav class="nav-tabs">
+      <button class="nav-btn active" onclick="switchTab('sos-tab')">🚨 Victim Stealth SOS</button>
+      <button class="nav-btn" onclick="switchTab('nearby-tab')">📍 Emergency Finder</button>
+      <button class="nav-btn" onclick="switchTab('command-tab')">📡 Command Center</button>
+    </nav>
+  </header>
+
+  <main class="main-container">
+
+    <!-- TAB 1: VICTIM STEALTH SOS -->
+    <section id="sos-tab" class="tab-content active">
+      <div class="grid-2">
+        <!-- SOS Trigger Card -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">🚨 Immediate Threat Trigger</span>
+            <span id="sos-status-pill" class="status-pill"><span class="dot"></span> System Ready</span>
+          </div>
+
+          <div class="sos-trigger-box">
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem;">
+              Click SOS or tap hardware power button 5 times to transmit silent alert.
+            </p>
+            <button id="sos-main-btn" class="sos-button" onclick="handleSOSTrigger()">
+              <span>SOS</span>
+              <span class="sos-subtext">TRANSMIT</span>
+            </button>
+            <p id="sos-feedback" style="font-size: 0.85rem; margin-top: 0.5rem; color: var(--accent-amber); font-weight: 600;">
+              Digital Footprint: Encrypted IP & Device ID logged automatically.
+            </p>
+
+            <div class="stealth-bar">
+              <button class="btn-stealth" onclick="toggleBlackout()">🌙 Blackout Screen</button>
+              <button class="btn-stealth" onclick="toggleDecoy()">📱 Fake Home Screen</button>
+              <button class="btn-stealth" onclick="simulateAmbientAudio()">🎙️ 10s Audio Analysis</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Silent AI Triage Chatbot -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">🤖 Silent AI Triage Chatbot (1-Click)</span>
+            <span id="triage-threat-badge" class="badge badge-police">Threat Level: Pending</span>
+          </div>
+
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+            LLM asks silent 1-click questions to gather critical dispatch context without requiring typing or sound.
+          </p>
+
+          <div class="triage-container">
+            <div id="triage-question-text" class="triage-question">
+              Click "SOS" above to begin silent AI triage dispatch.
+            </div>
+
+            <div id="triage-options-box" class="triage-options" style="display: none;">
+              <button class="btn-choice btn-yes" onclick="submitTriageAnswer('YES')">YES</button>
+              <button class="btn-choice btn-no" onclick="submitTriageAnswer('NO')">NO</button>
+            </div>
+          </div>
+
+          <div id="audio-analysis-output" style="margin-top: 1rem; padding: 0.75rem; background: var(--bg-primary); border-radius: 8px; font-size: 0.82rem; color: var(--text-muted);">
+            Ambient Audio Status: Awaiting SOS trigger...
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: NEARBY EMERGENCY SERVICES FINDER -->
+    <section id="nearby-tab" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">📍 Nearest Emergency Services Finder</span>
+          <span style="font-size: 0.85rem; color: var(--text-muted);">Real-time Police, Hospitals & 24x7 Medical Stores</span>
+        </div>
+
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+          Instant distance calculation, estimated drive/walk times, 24x7 emergency phone contacts, and direct 1-tap navigation maps.
+        </p>
+
+        <!-- Category Filters -->
+        <div class="services-filter">
+          <button class="filter-btn active" onclick="filterCategory('all', this)">All Emergency Services</button>
+          <button class="filter-btn" onclick="filterCategory('police', this)">🚔 Police Stations</button>
+          <button class="filter-btn" onclick="filterCategory('hospital', this)">🏥 Hospitals & Trauma Centers</button>
+          <button class="filter-btn" onclick="filterCategory('medical_store', this)">💊 24x7 Medical Stores / Pharmacies</button>
+        </div>
+
+        <!-- Services List Container -->
+        <div id="services-list-container">
+          <p style="text-align: center; color: var(--text-muted); padding: 2rem;">Loading nearby emergency services...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: COMMAND CENTER & ASYMMETRIC DISPATCH -->
+    <section id="command-tab" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">📡 Command Center & Asymmetric Information View</span>
+          <span class="status-pill"><span class="dot"></span> ERSS 112 Bridge Connected</span>
+        </div>
+
+        <div style="margin-bottom: 1.2rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; background: var(--bg-primary); padding: 0.8rem; border-radius: 8px;">
+          <label style="font-weight: 700; font-size: 0.9rem;">Select Responder Tier View:</label>
+          <select id="responder-tier-select" onchange="loadDashboard()" style="background: var(--card-bg); color: white; border: 1px solid var(--border-color); padding: 0.4rem 0.8rem; border-radius: 6px; font-weight: 600;">
+            <option value="1">Tier 1: Official Police Dispatcher (Exact GPS Pin)</option>
+            <option value="2">Tier 2: Verified Citizen / Gov ID (Exact GPS Pin)</option>
+            <option value="3">Tier 3: Anonymous Civilian (General Sector Alert Only)</option>
+          </select>
+        </div>
+
+        <div id="command-feed-container">
+          <p style="text-align: center; color: var(--text-muted); padding: 2rem;">Loading live emergency dispatch feed...</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Blackout Screen Overlay -->
+  <div id="blackout-overlay" onclick="toggleBlackout()">
+    <p>SCREEN BLACKOUT MODE ACTIVE</p>
+    <p>(Tap anywhere to wake screen)</p>
+  </div>
+
+  <!-- Decoy Home Screen Overlay -->
+  <div id="decoy-overlay" onclick="toggleDecoy()">
+    <div class="decoy-clock" id="decoy-time">11:51</div>
+    <div class="decoy-date" id="decoy-date">Friday, July 31</div>
+
+    <div class="decoy-icons">
+      <div class="decoy-icon">📞</div>
+      <div class="decoy-icon">💬</div>
+      <div class="decoy-icon">📷</div>
+      <div class="decoy-icon">🌐</div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
