@@ -18,8 +18,8 @@ class TestAbhayaApp(unittest.TestCase):
             "lat": 26.8467,
             "lng": 80.9462,
             "user_tier": 1,
-            "user_name": "Krishna Test",
-            "user_phone": "+91-9999999999"
+            "user_name": "Anuj Test",
+            "user_phone": "+91-7355988498"
         }
         response = self.client.post("/api/sos", json=payload)
         self.assertEqual(response.status_code, 200)

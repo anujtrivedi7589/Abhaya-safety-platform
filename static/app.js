@@ -58,8 +58,8 @@ async function handleSOSTrigger() {
         lat: userLocation.lat,
         lng: userLocation.lng,
         user_tier: 1, // Default trigger
-        user_name: "Krishna Prajapati",
-        user_phone: "+91-9876543210"
+        user_name: "Anuj Trivedi",
+        user_phone: "+91-7355988498"
       })
     });
 
