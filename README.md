@@ -1,61 +1,95 @@
-Ye raha final full README, seedha copy-paste kar do `README.md` me:
-
----
-### 🛡️ Abhaya - Women Safety Platform
-
-Your safety, our priority.
-A real-time women safety platform for SOS alerts, live location sharing, and instant help.
-
-### 🚀 Overview
-Abhaya is a women safety platform designed to provide immediate assistance in emergency situations. It enables users to trigger SOS alerts with live location, notify trusted contacts, and ensure quick response during critical moments.
-
-### ✨ Features
-- 🚨 One-click SOS trigger
-- 📍 Live location sharing with latitude & longitude
-- 📞 Emergency contact alert system
-- 🧠 Tier-based alert escalation (Tier 1, 2, 3)
-- 🔔 Real-time notifications
-- 📱 Fully responsive & fast
-
-### 🛠️ Tech Stack
-- Python (Flask)
-- JavaScript
-- HTML5, CSS3
-- Flask API
-- Git & GitHub
-
-### ⚙️ How It Works
-1. User feels unsafe and triggers SOS
-2. Platform captures live latitude & longitude
-3. SOS alert with user details is sent to server
-4. Alert is escalated to trusted contacts / nearby help
-5. Location is tracked continuously for quick action
-
-### 📁 Project Structure
-Abhaya-safety-platform/
-├── static/
-│   └── app.js       -> Frontend SOS logic & location handling
-├── templates/       -> HTML files
-├── app.py           -> Main Flask application
-├── test_app.py      -> Unit tests for SOS triggers
-└── requirements.txt -> Dependencies
-### ▶️ Getting Started
-1. Clone the Repository
-   git clone https://github.com/anujtrivedi7589/Abhaya-safety-platform.git
-2. Install Dependencies
-   pip install -r requirements.txt
-3. Run the Project
-   python app.py
-### 🚀 Future Improvements
-- 🤖 AI-based threat detection
-- 🗺️ Nearby police station & safe zone mapping
-- 🎙️ Voice-activated SOS
-- ⌚ Smartwatch integration
-- 📊 Safety analytics dashboard
-
-### 💡 Inspiration
-This project shows how Technology + Social Responsibility can create a safer environment for women and make help accessible with just one click.
+<h1 align="center">🛡️ Abhaya - Women Safety Platform</h1>
 
 <p align="center">
-  <b>Made with ❤️ by Anuj Trivedi</b>
+  Your safety, our priority. <br>
+  A real-time platform for SOS alerts, live location sharing, and instant help.
+</p>
+
+<hr>
+
+<h2>🚀 Overview</h2>
+<p>
+This project uses <b>Real-time Location Tracking</b> and <b>Flask API</b> to ensure women safety.
+By triggering a single SOS button, it captures live location and alerts trusted contacts instantly for quick response.
+</p>
+
+<h2>✨ Features</h2>
+<ul>
+  <li>🚨 One-click SOS trigger</li>
+  <li>📍 Live location sharing with latitude & longitude</li>
+  <li>📞 Emergency contact alert system</li>
+  <li>🧠 Tier-based alert escalation (Tier 1, 2, 3)</li>
+  <li>🔔 Real-time notifications</li>
+  <li>📱 Fully responsive & fast</li>
+</ul>
+
+<h2>🛠️ Tech Stack</h2>
+<ul>
+  <li><b>Python (Flask)</b></li>
+  <li>JavaScript</li>
+  <li>HTML5, CSS3</li>
+  <li>Geolocation API</li>
+</ul>
+
+<h2>🧩 How It Works</h2>
+<ol>
+  <li>User feels unsafe and triggers SOS button</li>
+  <li>System captures live latitude & longitude using Geolocation API</li>
+  <li>SOS alert with user details is sent to Flask server</li>
+  <li>Alert is escalated to trusted contacts / nearby help</li>
+  <li>Location is tracked continuously for quick action</li>
+</ol>
+
+<h2>📂 Project Structure</h2>
+<pre>
+static/app.js          → Frontend SOS logic & location handling
+templates/             → HTML files
+app.py                 → Main Flask application
+test_app.py            → Unit tests for SOS triggers
+requirements.txt       → Dependencies
+</pre>
+
+<h2>▶️ Getting Started</h2>
+
+<h3>1. Clone the Repository</h3>
+<pre>
+git clone https://github.com/anujtrivedi7589/Abhaya-safety-platform.git
+</pre>
+
+<h3>2. Install Dependencies</h3>
+<pre>
+pip install -r requirements.txt
+</pre>
+
+<h3>3. Run the Project</h3>
+<pre>
+python app.py
+</pre>
+
+<h2>🎮 Usage</h2>
+<ul>
+  <li>👉 Click on <b>SOS Button</b> to trigger emergency alert</li>
+  <li>📍 Allow <b>Location Permission</b> for live tracking</li>
+  <li>⛔ Press <b>Cancel / Safe</b> to stop alert</li>
+</ul>
+
+<h2>🌟 Future Improvements</h2>
+<ul>
+  <li>🤖 AI-based threat detection</li>
+  <li>🗺️ Nearby police station & safe zone mapping</li>
+  <li>🎙️ Voice-activated SOS</li>
+  <li>⌚ Smartwatch integration</li>
+  <li>📊 Safety analytics dashboard</li>
+</ul>
+
+<h2>💡 Inspiration</h2>
+<p>
+This project shows how <b>Technology + Social Responsibility</b> can create a safer environment for women
+and make help accessible with just one click.
+</p>
+
+<hr>
+
+<p align="center">
+  Made with ❤️ by <b>Anuj Trivedi</b>
 </p>
